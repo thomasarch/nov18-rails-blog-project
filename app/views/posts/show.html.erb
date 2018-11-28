@@ -1,23 +1,33 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
+
+<h1>	
   <%= @post.title %>
-</p>
+</h1>
+
+  
+ <%= @post.author %> posted <%= time_ago_in_words(@post.created_at) %> ago
 
 <p>
-  <strong>Author:</strong>
-  <%= @post.author %>
+ 	<%= @post.created_at.strftime("Posted on %m/%d/%Y which was a %A") %>	
 </p>
 
-<p>
-  <strong>Blog entry:</strong>
-  <%= @post.blog_entry %>
-</p>
+
+
+<div class="panel panel-primary">
+  <%= @post.blog_entry %>	
+</div>
+
 
 <% @post.comments.each do |comment| %>
-	<p><%= comment.author %></p>
-	<p><%= comment.comment_entry %></p>
+	<div class="panel panel-default">
+		<div class="panel-heading panel-primary">
+			<p><b><%= comment.author %></b> said <%= time_ago_in_words(comment.created_at) %> ago</p>
+		</div>
+		<div class="panel-body">
+			<p><%= comment.comment_entry %></p>
+		</div>
+	</div>
 <% end %>
 
 <%= link_to 'Edit', edit_post_path(@post) %>
