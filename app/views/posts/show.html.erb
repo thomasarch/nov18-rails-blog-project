@@ -6,8 +6,7 @@
 </h1>
 
   
- <%= @post.author %> posted <%= time_ago_in_words(@post.created_at) %> ago
-
+ <%= @post.user.username %> posted <%= time_ago_in_words(@post.created_at) %> ago
 <p>
  	<%= @post.created_at.strftime("Posted on %m/%d/%Y which was a %A") %>	
 </p>
@@ -22,7 +21,7 @@
 <% @post.comments.each do |comment| %>
 	<div class="panel panel-default">
 		<div class="panel-heading panel-primary">
-			<p><b><%= comment.author %></b> said <%= time_ago_in_words(comment.created_at) %> ago</p>
+			<p><b><%= comment.user.username %></b> said <%= time_ago_in_words(comment.created_at) %> ago</p>
 		</div>
 		<div class="panel-body">
 			<p><%= comment.comment_entry %></p>
